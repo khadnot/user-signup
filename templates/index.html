@@ -1,52 +1,67 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <body style="text-align: center">
-            <h1 align="center">Kenn's Sign-up Page</h1>
-            <form method ="post">
-                <table align="center">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="username">Username:</label>
-                            </td>
-                            <td>
-                                <input name="username" value="" type="text" />
-                                <span class="error"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="password">Password:</label>
-                            </td>
-                            <td>
-                                <input name="password" type="password" />
-                                <span class="error"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="re-enter">Re-enter Password:</label>
-                            </td>
-                            <td>
-                                <input name="re-enter" type="password" />
-                                <span class="error"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="email">Email (optional):</label>
-                            </td>
-                            <td>
-                                <input name="email" value="" type="text" />
-                                <span class="error"></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                <input type="submit" value="Click here to submit" />
-            </form>
-        </body>
-    </head>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Kenn's Sign-up Page</h1>
+<form action="/" method="POST">
+    <table>
+        <tr>
+            <td>
+                <label for="username">Username: </label>
+            </td>
+            <td>
+                <input name=username type="text" value="{{username}}" required>
+            </td>
+            <td>
+                {% if username_error %}
+                <span class='error'>{{ username_error}}</span>
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="password">Password: </label>
+            </td>
+            <td>
+                <input name=password type="password" value="{{password}}" required>
+            </td>
+            <td>
+                {% if password_error %}
+                <span class='error'>{{ password_error }}</span>
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="verify_password">Verify Password: </label>
+            </td>
+            <td>
+                <input name=verify type="password" value="{{verify}}" required>
+            </td>
+            <td>
+                {% if verify_error %}
+                <span class='error'>{{ verify_error }}</span>
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="email"> Email (Optional): </label>
+            </td>
+            <td>
+                <input name=email type="email" value="{{email}}">
+            </td>
+            <td>
+                {% if email_error %}
+                <span class='error'>{{ email_error }}</span>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
